@@ -97,6 +97,19 @@
     .feature p, .why-card p{color:#ddd;font-size:1rem;}
     .feature:hover, .why-card:hover{background:rgba(0,0,0,0.7);transform:translateY(-4px) scale(1.02);}
 
+   /* VIDEO FEATURE FIX */
+.video-feature video {
+  width: 100%;           /* fill the card width */
+  height: 300px;         /* matches grid card height */
+  border-radius: 14px;   /* correct syntax */
+  margin-bottom: 1rem;
+  object-fit: cover;     /* maintain aspect ratio and cover the area */
+}
+
+
+
+
+
     /* TESTIMONIALS */
     .testimonial{
       max-width:700px;margin:0 auto 40px;text-align:center;padding:2rem;
@@ -212,6 +225,7 @@
       <div class="feature"><i class="fas fa-laptop"></i><h3>1. Customers Order</h3><p>Through your branded website.</p></div>
       <div class="feature"><i class="fas fa-mobile-alt"></i><h3>2. Orders Received</h3><p>Directly in your admin app.</p></div>
       <div class="feature"><i class="fas fa-truck"></i><h3>3. Manage & Deliver</h3><p>Track and deliver as usual.</p></div>
+      <!-- VIDEO FEATURE -->
       <div class="feature video-feature">
         <video autoplay muted loop playsinline>
           <source src="cf5d245d-6304-4ca3-a06c-2c67481a32ec.mp4" type="video/mp4">
@@ -236,7 +250,7 @@
     </div>
   </section>
 
-  <!-- WHY CHOOSE (UPGRADED) -->
+  <!-- WHY CHOOSE -->
   <section id="why">
     <h2>Why Choose OrderGuard?</h2>
     <p class="section-desc">We help takeaways stay independent and grow profitably.</p>
@@ -299,13 +313,11 @@
     // Contact form success message
     const form=document.getElementById('contactForm');
     const successMsg=form.querySelector('.success-message');
-    form.addEventListener('submit',(e)=>{
+    form.addEventListener('submit',e=>{
       e.preventDefault();
       successMsg.style.display='block';
-      form.reset();
-      setTimeout(()=>{successMsg.style.display='none';},4000);
+      setTimeout(()=>{successMsg.style.display='none';form.reset();},3000);
     });
   </script>
 </body>
 </html>
-
