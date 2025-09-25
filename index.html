@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OrderGuard</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* GLOBAL RESET */
+    ,::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html { scroll-behavior: smooth; }
+    body{
+      font-family:'Poppins',sans-serif;
+      color:#eee;
+      line-height:1.7;
+      background: url('premium_photo-1661962305366-0c62646fd249.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+    section{padding:120px 20px; position:relative;}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+
+    /* BRAND COLORS */
+    :root {
+      --brand-primary:#0056b3;
+      --brand-secondary:#f4f4f4;
+      --brand-accent:#00b3ff;
+    }
+
+    /* NAVIGATION */
+    nav{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      background:rgba(0,0,0,0.6);
+      border-bottom:1px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(10px);
+    }
+    nav .container{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;}
+    nav .logo-text{
+      color:#fff; /* white for contrast */
+      font-size:1.6rem;
+      font-weight:700;
+      letter-spacing:1px;
+      padding:4px 10px;
+      background: rgba(0,0,0,0.5); /* semi-transparent background */
+      border-radius:6px;
+      text-shadow:2px 2px 6px rgba(0,0,0,0.7);
+    }
+    nav .links{display:flex;gap:2rem;align-items:center;}
+    nav a{font-weight:500;color:#fff;position:relative;transition:.3s;}
+    nav a::after{content:"";position:absolute;width:0;height:2px;left:0;bottom:-6px;background:var(--brand-primary);transition:.3s;}
+    nav a:hover{color:var(--brand-primary);}
+    nav a:hover::after{width:100%;}
+    nav .menu-toggle{display:none;font-size:1.8rem;cursor:pointer;}
+
+    /* HERO */
+    .hero{display:flex;align-items:center;justify-content:space-between;gap:3rem;padding-top:180px;position:relative;}
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background: rgba(0,0,0,0.6);
+      z-index:-1;
+    }
+    .hero-text{flex:1;max-width:600px;background:rgba(0,0,0,0.65);backdrop-filter:blur(12px);padding:2rem;border-radius:12px;}
+    .hero h1{font-size:3.5rem;font-weight:700;color:#fff;margin-bottom:20px;line-height:1.2;}
+    .hero p{font-size:1.1rem;color:#ddd;margin-bottom:35px;}
+    .cta{display:flex;gap:1rem;flex-wrap:wrap;}
+    .cta button{
+      padding:14px 32px;border:none;border-radius:8px;font-size:1rem;font-weight:500;
+      cursor:pointer;transition:.3s;box-shadow:0 6px 15px rgba(0,0,0,0.2);
+    }
+    .cta .primary{background:var(--brand-primary);color:#fff;}
+    .cta .primary:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 12px 24px rgba(0,0,0,0.3);}
+    .cta .secondary{background:#fff;color:#333;}
+    .cta .secondary:hover{background:#eee;transform:translateY(-2px);}
+    .hero-img{flex:1;text-align:center;}
+
+    /* SECTION TITLES */
+    h2{font-size:2.2rem;font-weight:700;margin-bottom:20px;text-align:center;}
+    #how h2,#features h2,#why h2,#testimonials h2,#about h2,#contact h2{color:#fff;}
+    .section-desc{max-width:720px;margin:0 auto 60px;text-align:center;color:#f4f4f4;font-size:1.05rem;
+      background:rgba(0,0,0,0.5);padding:1rem;border-radius:10px;}
+
+    /* GRID */
+    .grid{display:grid;gap:2rem;}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+
+    /* FEATURE CARDS */
+    .feature{
+      padding:2rem;border-radius:14px;background:rgba(0,0,0,0.55);backdrop-filter:blur(12px);
+      text-align:center;transition:.3s;border:1px solid rgba(255,255,255,0.2);
+      opacity:0; transform: translateY(20px);
+    }
+    .feature.show{opacity:1; transform: translateY(0);}
+    .feature i{font-size:2rem;color:var(--brand-primary);margin-bottom:1rem;}
+    .feature h3{margin-bottom:.8rem;font-size:1.3rem;font-weight:600;color:#fff;}
+    .feature p{color:#ddd;font-size:1rem;}
+    .feature:hover{background:rgba(0,0,0,0.65);box-shadow:0 12px 28px rgba(0,0,0,.3);}
+
+    /* VIDEO FEATURE */
+    .video-feature .video-container{
+      position:relative;
+    }
+    .video-feature video{
+      width:100%;
+      border-radius:12px;
+      margin-bottom:1rem;
+      transition: transform 0.3s;
+    }
+    .video-feature:hover video{
+      transform: scale(1.03);
+    }
+    #videoControl{
+      position:absolute;
+      bottom:10px;
+      right:10px;
+      background:rgba(0,0,0,0.6);
+      border:none;
+      color:#fff;
+      padding:8px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      font-weight:600;
+      transition:.3s;
+    }
+    #videoControl:hover{
+      background: var(--brand-primary);
+    }
+
+    /* LIST */
+    ul{max-width:700px;margin:0 auto;list-style:none;padding:1.5rem;background:rgba(0,0,0,0.55);backdrop-filter:blur(12px);border-radius:12px;}
+    ul li{margin-bottom:15px;font-size:1.05rem;position:relative;padding-left:28px;color:#fff;}
+    ul li::before{content:"✓";color:var(--brand-primary);font-weight:700;position:absolute;left:0;}
+
+    /* TESTIMONIALS */
+    .testimonial{
+      max-width:700px;margin:0 auto 40px;text-align:center;padding:2rem;
+      background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);border-radius:14px;border:1px solid rgba(255,255,255,0.2);
+      transition:.3s;opacity:0; transform: translateY(20px);
+    }
+    .testimonial.show{opacity:1; transform: translateY(0);}
+    .testimonial:hover{box-shadow:0 12px 28px rgba(0,0,0,.3);}
+    .testimonial p{font-style:italic;color:#ddd;margin-bottom:1rem;font-size:1rem;}
+    .testimonial span{font-weight:600;color:#fff;}
+
+    /* CONTACT FORM */
+    form{
+      max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;
+      background:rgba(0,0,0,0.65);backdrop-filter:blur(12px);padding:2rem;border-radius:12px;
+      opacity:0; transform: translateY(20px);
+    }
+    form.show{opacity:1; transform: translateY(0);}
+    input,textarea{
+      padding:14px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;font-size:1rem;
+      transition:.3s;background:rgba(0,0,0,0.4);color:#fff;
+    }
+    input:focus,textarea:focus{border-color:var(--brand-primary);outline:none;background:rgba(0,0,0,0.5);box-shadow:0 0 8px var(--brand-primary);}
+    form button{background:var(--brand-primary);color:#fff;padding:14px;border:none;border-radius:8px;font-size:1rem;cursor:pointer;font-weight:500;transition:.3s;box-shadow:0 6px 15px rgba(0,0,0,0.2);}
+    form button:hover{background:#004494;transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,0,0,0.3);}
+
+    /* FOOTER */
+    footer{background:#111;color:#ccc;padding:40px 20px;}
+    footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    footer p{margin:0;font-size:.95rem;}
+    footer a{color:var(--brand-primary);margin:0 10px;transition:.3s;}
+    footer a:hover{color:#fff;}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){.hero{flex-direction:column;text-align:center;}.hero-text{max-width:100%;}}
+    @media(max-width:768px){
+      nav .links{display:none;flex-direction:column;gap:1rem;background:rgba(0,0,0,0.9);padding:1.5rem;position:absolute;top:70px;right:20px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,.2);}
+      nav .links.active{display:flex;}
+      nav .menu-toggle{display:block;}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+     <a href="#" style="display:flex; align-items:center; gap:8px;">
+  <img src="mas_malinaw_na_logo-removebg-preview.png" alt="OrderGuard Logo" style="height:50px;">
+  <span class="logo-text">OrderGuard</span>
+</a>
+      <div class="links">
+        <a href="#how">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#why">Why Choose</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text fade-up">
+      <h1>Your takeaway, your brand, your orders.</h1>
+      <p>OrderGuard gives you a powerful online ordering system built just for your business.</p>
+      <div class="cta">
+        <button class="primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">Book a Demo</button>
+        <button class="secondary" onclick="window.location.href='https://example.com/signup';">Get Started</button>
+      </div>
+    </div>
+    <div class="hero-img fade-up">
+      <img src="upscalemedia-transformed.png" alt="App Mockup">
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+<section id="how">
+  <h2>How It Works</h2>
+  <p class="section-desc">A simple 3-step process to manage your takeaway orders.</p>
+
+ <!-- 3-Step Grid + Video -->
+<div class="container grid grid-3">
+  <div class="feature">
+    <i class="fas fa-laptop"></i>
+    <h3>1. Customers Order</h3>
+    <p>Through your branded website.</p>
+  </div>
+  <div class="feature">
+    <i class="fas fa-mobile-alt"></i>
+    <h3>2. Orders Received</h3>
+    <p>Directly in your admin app.</p>
+  </div>
+  <div class="feature">
+    <i class="fas fa-truck"></i>
+    <h3>3. Manage & Deliver</h3>
+    <p>Track and deliver as usual.</p>
+  </div>
+  <div class="feature video-feature">
+    <div class="video-container">
+      <video id="demoVideo" autoplay muted loop playsinline>
+        <source src="cf5d245d-6304-4ca3-a06c-2c67481a32ec.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button id="videoControl">Pause</button>
+    </div>
+    <h3 style="margin-top:15px;">Interactive Demo</h3>
+    <p>See how your branded website works in real time.</p>
+  </div>
+</div>
+
+</section>
+
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2>Features</h2>
+    <p class="section-desc">All the tools you need to grow your business and keep control.</p>
+    <div class="container grid grid-3">
+      <div class="feature"><i class="fas fa-globe"></i><h3>Branded Website</h3><p>Tailored to your takeaway.</p></div>
+      <div class="feature"><i class="fas fa-chart-line"></i><h3>Order Dashboard</h3><p>Manage orders in real time.</p></div>
+      <div class="feature"><i class="fas fa-users"></i><h3>Customer Database</h3><p>You keep the customer details.</p></div>
+      <div class="feature"><i class="fas fa-file-invoice"></i><h3>Reports & Insights</h3><p>Track sales and performance.</p></div>
+      <div class="feature"><i class="fas fa-lock"></i><h3>Secure Payments</h3><p>Fast, safe, card-only payments.</p></div>
+
+
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section id="why">
+    <h2>Why Choose OrderGuard?</h2>
+    <p class="section-desc">We help takeaways stay independent and grow profitably.</p>
+    <ul>
+      <li>Keep full control of your customer base.</li>
+      <li>Build loyalty with your own brand.</li>
+      <li>Simple system designed for takeaways.</li>
+      <li>Scales with your business as you grow.</li>
+    </ul>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonial">
+      <p>“Since using OrderGuard, our repeat customers doubled. We control everything under our own brand!”</p>
+      <span>— John D., Takeaway Owner</span>
+    </div>
+    <div class="testimonial">
+      <p>“The dashboard is simple and powerful. I can see orders, payments, and customer details instantly.”</p>
+      <span>— Maria S., Restaurant Manager</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p class="section-desc">
+      Built by people who know hospitality, OrderGuard helps takeaways grow without relying on big apps.
+      We understand the challenges independent restaurants face—high commission fees, limited control over customer relationships, and the struggle to stand out in crowded marketplaces.
+      <br><br>
+      That’s why we created OrderGuard: a simple yet powerful ordering system designed specifically for takeaways and restaurants. With your own branded website, real-time order management, and access to valuable customer insights, you stay in control while building loyalty and increasing profits.
+      <br><br>
+      Our mission is to empower local businesses to thrive, giving you the tools of big platforms without the hidden costs or restrictions.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Book a Free Demo</h2>
+    <form onsubmit="event.preventDefault(); alert('Your demo request has been sent!');">
+      <input type="text" placeholder="Business Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 OrderGuard. All Rights Reserved.</p>
+      <p><a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Cookies</a></p>
+    </div>
+  </footer>
+
+  <!-- JS MENU, SCROLL & VIDEO CONTROL -->
+  <script>
+    const menuToggle=document.querySelector('.menu-toggle');
+    const navLinks=document.querySelector('.links');
+    menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('active');});
+
+    // Fade-up animation
+    const faders = document.querySelectorAll('.fade-up, .feature, .testimonial, form');
+    window.addEventListener('scroll', ()=>{faders.forEach(el=>{if(el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('show');});});
+    window.addEventListener('load', ()=>{faders.forEach(el=>el.classList.add('show'));});
+
+    // VIDEO PLAY/PAUSE CONTROL
+    const demoVideo = document.getElementById('demoVideo');
+    const videoControl = document.getElementById('videoControl');
+    videoControl.addEventListener('click', () => {
+      if (demoVideo.paused) {
+        demoVideo.play();
+        videoControl.textContent = 'Pause';
+      } else {
+        demoVideo.pause();
+        videoControl.textContent = 'Play';
+      }
+    });
+  </script>
+</body>
+</html>
