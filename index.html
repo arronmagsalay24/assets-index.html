@@ -26,6 +26,7 @@
       --brand-primary:#0056b3;
       --brand-secondary:#f4f4f4;
       --brand-accent:#00b3ff;
+      --brand-dark:#0a0a0a;
     }
 
     /* NAV */
@@ -38,8 +39,8 @@
     nav .logo-text{color:#fff;font-size:1.5rem;font-weight:700;letter-spacing:1px;}
     nav .links{display:flex;gap:2rem;align-items:center;}
     nav a{font-weight:500;color:#fff;position:relative;transition:.3s;}
-    nav a::after{content:"";position:absolute;width:0;height:2px;left:0;bottom:-6px;background:var(--brand-primary);transition:.3s;}
-    nav a:hover{color:var(--brand-primary);}
+    nav a::after{content:"";position:absolute;width:0;height:2px;left:0;bottom:-6px;background:var(--brand-accent);transition:.3s;}
+    nav a:hover{color:var(--brand-accent);}
     nav a:hover::after{width:100%;}
     nav .menu-toggle{display:none;font-size:1.8rem;cursor:pointer;color:#fff;}
 
@@ -63,8 +64,11 @@
       padding:14px 20px;border:none;border-radius:8px;font-size:1rem;font-weight:500;
       cursor:pointer;transition:.3s;box-shadow:0 6px 15px rgba(0,0,0,0.25);
     }
-    .cta .primary{background:var(--brand-primary);color:#fff;}
-    .cta .primary:hover{transform:translateY(-2px);}
+    .cta .primary{
+      background:linear-gradient(135deg,var(--brand-primary),var(--brand-accent));
+      color:#fff;
+    }
+    .cta .primary:hover{transform:translateY(-2px) scale(1.03);}
     .cta .secondary{background:#fff;color:#333;}
     .cta .secondary:hover{background:#eee;transform:translateY(-2px);}
     .hero-img{flex:1;min-width:260px;text-align:center;order:2;}
@@ -81,59 +85,60 @@
     .grid{display:grid;gap:2rem;}
     .grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
 
-    /* FEATURE CARDS */
-    .feature{
+    /* FEATURE / CARD STYLES */
+    .feature, .why-card{
       padding:2rem;border-radius:14px;background:rgba(0,0,0,0.55);backdrop-filter:blur(12px);
       text-align:center;transition:.3s;border:1px solid rgba(255,255,255,0.2);
       opacity:0;transform:translateY(20px);
     }
-    .feature.show{opacity:1;transform:translateY(0);}
-    .feature i{font-size:2rem;color:var(--brand-primary);margin-bottom:1rem;}
-    .feature h3{margin-bottom:.8rem;font-size:1.3rem;font-weight:600;color:#fff;}
-    .feature p{color:#ddd;font-size:1rem;}
-    .feature:hover{background:rgba(0,0,0,0.65);}
-
-    /* VIDEO */
-    .video-feature video{width:100%;border-radius:12px;margin-bottom:1rem;}
-
-    /* LIST */
-    ul{max-width:700px;margin:0 auto;list-style:none;padding:1.5rem;background:rgba(0,0,0,0.55);border-radius:12px;}
-    ul li{margin-bottom:15px;font-size:1rem;position:relative;padding-left:28px;color:#fff;}
-    ul li::before{content:"✓";color:var(--brand-primary);position:absolute;left:0;}
+    .feature.show, .why-card.show{opacity:1;transform:translateY(0);}
+    .feature i, .why-card i{font-size:2rem;color:var(--brand-accent);margin-bottom:1rem;}
+    .feature h3, .why-card h3{margin-bottom:.8rem;font-size:1.3rem;font-weight:600;color:#fff;}
+    .feature p, .why-card p{color:#ddd;font-size:1rem;}
+    .feature:hover, .why-card:hover{background:rgba(0,0,0,0.7);transform:translateY(-4px) scale(1.02);}
 
     /* TESTIMONIALS */
     .testimonial{
       max-width:700px;margin:0 auto 40px;text-align:center;padding:2rem;
       background:rgba(0,0,0,0.6);border-radius:14px;
-      opacity:0;transform:translateY(20px);
+      opacity:0;transform:translateY(20px);transition:.3s;
     }
     .testimonial.show{opacity:1;transform:translateY(0);}
     .testimonial p{font-style:italic;color:#ddd;margin-bottom:1rem;font-size:1rem;}
-    .testimonial span{font-weight:600;color:#fff;}
+    .testimonial span{font-weight:600;color:var(--brand-accent);}
+    .testimonial:hover{transform:translateY(-5px);background:rgba(0,0,0,0.7);}
+    .testimonial::before{
+      content:"👤";display:block;font-size:2rem;margin-bottom:10px;color:var(--brand-primary);
+    }
 
     /* CONTACT FORM */
     form{
       max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;
       background:rgba(0,0,0,0.65);padding:2rem;border-radius:12px;
       opacity:0;transform:translateY(20px);
+      box-shadow:0 6px 15px rgba(0,0,0,0.4);
     }
     form.show{opacity:1;transform:translateY(0);}
     input,textarea{
       padding:14px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;
       font-size:1rem;background:rgba(0,0,0,0.4);color:#fff;
     }
-    input:focus,textarea:focus{border-color:var(--brand-primary);outline:none;}
+    input:focus,textarea:focus{border-color:var(--brand-accent);outline:none;}
     form button{
-      background:var(--brand-primary);color:#fff;padding:14px;border:none;border-radius:8px;
+      background:linear-gradient(135deg,var(--brand-primary),var(--brand-accent));
+      color:#fff;padding:14px;border:none;border-radius:8px;
       font-size:1rem;cursor:pointer;font-weight:500;transition:.3s;
     }
-    form button:hover{background:#004494;}
+    form button:hover{transform:scale(1.03);}
+    .success-message{
+      margin-top:1rem;text-align:center;color:var(--brand-accent);font-weight:500;display:none;
+    }
 
     /* FOOTER */
     footer{background:#111;color:#ccc;padding:30px 20px;}
     footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
     footer p{margin:0;font-size:.9rem;}
-    footer a{color:var(--brand-primary);margin:0 8px;transition:.3s;}
+    footer a{color:var(--brand-accent);margin:0 8px;transition:.3s;}
     footer a:hover{color:#fff;}
 
     /* RESPONSIVE */
@@ -160,12 +165,11 @@
       .hero p{font-size:0.95rem;}
       .hero-img img{max-height:280px;margin:0 auto;}
       section{padding:60px 15px;}
-      .feature, .testimonial, form{padding:1.5rem;}
+      .feature, .testimonial, .why-card, form{padding:1.5rem;}
     }
   </style>
 </head>
 <body>
-
   <!-- NAV -->
   <nav>
     <div class="container">
@@ -200,25 +204,23 @@
     </div>
   </section>
 
- <!-- HOW IT WORKS -->
-<section id="how">
-  <h2>How It Works</h2>
-  <p class="section-desc">A simple 3-step process to manage your takeaway orders.</p>
-  <div class="container grid grid-3">
-    <div class="feature"><i class="fas fa-laptop"></i><h3>1. Customers Order</h3><p>Through your branded website.</p></div>
-    <div class="feature"><i class="fas fa-mobile-alt"></i><h3>2. Orders Received</h3><p>Directly in your admin app.</p></div>
-    <div class="feature"><i class="fas fa-truck"></i><h3>3. Manage & Deliver</h3><p>Track and deliver as usual.</p></div>
-    
-    <!-- VIDEO FEATURE -->
-    <div class="feature video-feature">
-      <video autoplay muted loop playsinline>
-        <source src="cf5d245d-6304-4ca3-a06c-2c67481a32ec.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <h3>Video Demo</h3>
-      <p>Watch how OrderGuard works in real-time to protect your business.</p>
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <h2>How It Works</h2>
+    <p class="section-desc">A simple 3-step process to manage your takeaway orders.</p>
+    <div class="container grid grid-3">
+      <div class="feature"><i class="fas fa-laptop"></i><h3>1. Customers Order</h3><p>Through your branded website.</p></div>
+      <div class="feature"><i class="fas fa-mobile-alt"></i><h3>2. Orders Received</h3><p>Directly in your admin app.</p></div>
+      <div class="feature"><i class="fas fa-truck"></i><h3>3. Manage & Deliver</h3><p>Track and deliver as usual.</p></div>
+      <div class="feature video-feature">
+        <video autoplay muted loop playsinline>
+          <source src="cf5d245d-6304-4ca3-a06c-2c67481a32ec.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <h3>Video Demo</h3>
+        <p>Watch how OrderGuard works in real-time to protect your business.</p>
+      </div>
     </div>
-  </div>
   </section>
 
   <!-- FEATURES -->
@@ -234,16 +236,16 @@
     </div>
   </section>
 
-  <!-- WHY CHOOSE -->
+  <!-- WHY CHOOSE (UPGRADED) -->
   <section id="why">
     <h2>Why Choose OrderGuard?</h2>
     <p class="section-desc">We help takeaways stay independent and grow profitably.</p>
-    <ul>
-      <li>Keep full control of your customer base.</li>
-      <li>Build loyalty with your own brand.</li>
-      <li>Simple system designed for takeaways.</li>
-      <li>Scales with your business as you grow.</li>
-    </ul>
+    <div class="container grid grid-3">
+      <div class="why-card"><i class="fas fa-user-lock"></i><h3>Full Control</h3><p>Keep full control of your customer base.</p></div>
+      <div class="why-card"><i class="fas fa-award"></i><h3>Brand Loyalty</h3><p>Build loyalty with your own brand.</p></div>
+      <div class="why-card"><i class="fas fa-cogs"></i><h3>Simple System</h3><p>Easy-to-use system designed for takeaways.</p></div>
+      <div class="why-card"><i class="fas fa-chart-simple"></i><h3>Scalable</h3><p>Scales with your business as you grow.</p></div>
+    </div>
   </section>
 
   <!-- TESTIMONIALS -->
@@ -266,11 +268,12 @@
   <!-- CONTACT -->
   <section id="contact">
     <h2>Book a Free Demo</h2>
-    <form onsubmit="event.preventDefault(); alert('Your demo request has been sent!');">
+    <form id="contactForm">
       <input type="text" placeholder="Business Name" required>
       <input type="email" placeholder="Email Address" required>
       <textarea placeholder="Your Message"></textarea>
       <button type="submit">Submit</button>
+      <div class="success-message">✅ Your demo request has been sent!</div>
     </form>
   </section>
 
@@ -289,9 +292,20 @@
     menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('active');});
 
     // Fade-up
-    const faders=document.querySelectorAll('.fade-up, .feature, .testimonial, form');
+    const faders=document.querySelectorAll('.fade-up, .feature, .testimonial, form, .why-card');
     window.addEventListener('scroll',()=>{faders.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('show');});});
     window.addEventListener('load',()=>{faders.forEach(el=>el.classList.add('show'));});
+
+    // Contact form success message
+    const form=document.getElementById('contactForm');
+    const successMsg=form.querySelector('.success-message');
+    form.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      successMsg.style.display='block';
+      form.reset();
+      setTimeout(()=>{successMsg.style.display='none';},4000);
+    });
   </script>
 </body>
 </html>
+
