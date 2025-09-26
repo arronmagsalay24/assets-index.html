@@ -100,7 +100,7 @@
    /* VIDEO FEATURE FIX */
 .video-feature video {
   width: 100%;           /* fill the card width */
-  height: 300px;         /* matches grid card height */
+  height: auto;         /* matches grid card height */
   border-radius: 14px;   /* correct syntax */
   margin-bottom: 1rem;
   object-fit: cover;     /* maintain aspect ratio and cover the area */
@@ -203,19 +203,19 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text fade-up">
-      <h1>Your takeaway, your brand, your orders.</h1>
-      <p>OrderGuard gives you a powerful online ordering system built just for your business.</p>
-      <div class="cta">
-        <button class="primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">Book a Demo</button>
-        <button class="secondary" onclick="window.location.href='https://example.com/signup';">Get Started</button>
-      </div>
+<section class="hero">
+  <div class="hero-text fade-up">
+    <h1>Stop paying high commissions. Own your orders. Grow your brand.</h1>
+    <p>OrderGuard gives you a powerful online ordering system built just for your business.</p>
+    <div class="cta">
+      <button class="primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'});">Book a Demo</button>
     </div>
-    <div class="hero-img fade-up">
-      <img src="upscalemedia-transformed.png" alt="App Mockup">
-    </div>
-  </section>
+  </div>
+  <div class="hero-img fade-up">
+    <img src="upscalemedia-transformed.png" alt="App Mockup">
+  </div>
+</section>
+
 
   <!-- HOW IT WORKS -->
   <section id="how">
@@ -295,6 +295,7 @@
   <footer>
     <div class="container">
       <p>&copy; 2025 OrderGuard. All Rights Reserved.</p>
+      <p>Contact us: <a href="mailto:info@order-guard.com">info@order-guard.com</a></p>
       <p><a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Cookies</a></p>
     </div>
   </footer>
