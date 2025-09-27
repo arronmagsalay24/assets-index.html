@@ -99,16 +99,12 @@
 
    /* VIDEO FEATURE FIX */
 .video-feature video {
-  width: 100%;           /* fill the card width */
-  height: auto;         /* matches grid card height */
-  border-radius: 14px;   /* correct syntax */
+  width: 100%;           
+  height: auto;         
+  border-radius: 14px;   
   margin-bottom: 1rem;
-  object-fit: cover;     /* maintain aspect ratio and cover the area */
+  object-fit: cover;     
 }
-
-
-
-
 
     /* TESTIMONIALS */
     .testimonial{
@@ -124,7 +120,7 @@
       content:"👤";display:block;font-size:2rem;margin-bottom:10px;color:var(--brand-primary);
     }
 
-    /* CONTACT FORM */
+    /* CONTACT FORM & CALCULATOR */
     form{
       max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;
       background:rgba(0,0,0,0.65);padding:2rem;border-radius:12px;
@@ -132,11 +128,11 @@
       box-shadow:0 6px 15px rgba(0,0,0,0.4);
     }
     form.show{opacity:1;transform:translateY(0);}
-    input,textarea{
+    input,textarea,select{
       padding:14px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;
       font-size:1rem;background:rgba(0,0,0,0.4);color:#fff;
     }
-    input:focus,textarea:focus{border-color:var(--brand-accent);outline:none;}
+    input:focus,textarea:focus,select:focus{border-color:var(--brand-accent);outline:none;}
     form button{
       background:linear-gradient(135deg,var(--brand-primary),var(--brand-accent));
       color:#fff;padding:14px;border:none;border-radius:8px;
@@ -216,109 +212,165 @@
   </div>
 </section>
 
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <h2>How It Works</h2>
-    <p class="section-desc">A simple 3-step process to manage your takeaway orders.</p>
-    <div class="container grid grid-3">
-      <div class="feature"><i class="fas fa-laptop"></i><h3>1. Customers Order</h3><p>Through your branded website.</p></div>
-      <div class="feature"><i class="fas fa-mobile-alt"></i><h3>2. Orders Received</h3><p>Directly in your admin app.</p></div>
-      <div class="feature"><i class="fas fa-truck"></i><h3>3. Manage & Deliver</h3><p>Track and deliver as usual.</p></div>
-      <!-- VIDEO FEATURE -->
-      <div class="feature video-feature">
-        <video autoplay muted loop playsinline>
-          <source src="cf5d245d-6304-4ca3-a06c-2c67481a32ec.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <h3>Video Demo</h3>
-        <p>Watch how OrderGuard works in real-time to protect your business.</p>
-      </div>
+<!-- HOW IT WORKS -->
+<section id="how">
+  <h2>How It Works</h2>
+  <p class="section-desc">A simple 3-step process to manage your takeaway orders.</p>
+  <div class="container grid grid-3">
+    <div class="feature"><i class="fas fa-laptop"></i><h3>1. Customers Order</h3><p>Through your branded website.</p></div>
+    <div class="feature"><i class="fas fa-mobile-alt"></i><h3>2. Orders Received</h3><p>Directly in your admin app.</p></div>
+    <div class="feature"><i class="fas fa-truck"></i><h3>3. Manage & Deliver</h3><p>Track and deliver as usual.</p></div>
+    <div class="feature video-feature">
+      <video autoplay muted loop playsinline>
+        <source src="cf5d245d-6304-4ca3-a06c-2c67481a32ec.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <h3>Video Demo</h3>
+      <p>Watch how OrderGuard works in real-time to protect your business.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <h2>Features</h2>
-    <p class="section-desc">All the tools you need to grow your business and keep control.</p>
-    <div class="container grid grid-3">
-      <div class="feature"><i class="fas fa-globe"></i><h3>Branded Website</h3><p>Tailored to your takeaway.</p></div>
-      <div class="feature"><i class="fas fa-chart-line"></i><h3>Order Dashboard</h3><p>Manage orders in real time.</p></div>
-      <div class="feature"><i class="fas fa-users"></i><h3>Customer Database</h3><p>You keep the customer details.</p></div>
-      <div class="feature"><i class="fas fa-file-invoice"></i><h3>Reports & Insights</h3><p>Track sales and performance.</p></div>
-      <div class="feature"><i class="fas fa-lock"></i><h3>Secure Payments</h3><p>Fast, safe, card-only payments.</p></div>
-    </div>
-  </section>
+<!-- FEATURES -->
+<section id="features">
+  <h2>Features</h2>
+  <p class="section-desc">All the tools you need to grow your business and keep control.</p>
+  <div class="container grid grid-3">
+    <div class="feature"><i class="fas fa-globe"></i><h3>Branded Website</h3><p>Tailored to your takeaway.</p></div>
+    <div class="feature"><i class="fas fa-chart-line"></i><h3>Order Dashboard</h3><p>Manage orders in real time.</p></div>
+    <div class="feature"><i class="fas fa-users"></i><h3>Customer Database</h3><p>You keep the customer details.</p></div>
+    <div class="feature"><i class="fas fa-file-invoice"></i><h3>Reports & Insights</h3><p>Track sales and performance.</p></div>
+    <div class="feature"><i class="fas fa-lock"></i><h3>Secure Payments</h3><p>Fast, safe, card-only payments.</p></div>
+  </div>
+</section>
 
-  <!-- WHY CHOOSE -->
-  <section id="why">
-    <h2>Why Choose OrderGuard?</h2>
-    <p class="section-desc">We help takeaways stay independent and grow profitably.</p>
-    <div class="container grid grid-3">
-      <div class="why-card"><i class="fas fa-user-lock"></i><h3>Full Control</h3><p>Keep full control of your customer base.</p></div>
-      <div class="why-card"><i class="fas fa-award"></i><h3>Brand Loyalty</h3><p>Build loyalty with your own brand.</p></div>
-      <div class="why-card"><i class="fas fa-cogs"></i><h3>Simple System</h3><p>Easy-to-use system designed for takeaways.</p></div>
-      <div class="why-card"><i class="fas fa-chart-simple"></i><h3>Scalable</h3><p>Scales with your business as you grow.</p></div>
-    </div>
-  </section>
+<!-- WHY CHOOSE -->
+<section id="why">
+  <h2>Why Choose OrderGuard?</h2>
+  <p class="section-desc">We help takeaways stay independent and grow profitably.</p>
+  <div class="container grid grid-3">
+    <div class="why-card"><i class="fas fa-user-lock"></i><h3>Full Control</h3><p>Keep full control of your customer base.</p></div>
+    <div class="why-card"><i class="fas fa-award"></i><h3>Brand Loyalty</h3><p>Build loyalty with your own brand.</p></div>
+    <div class="why-card"><i class="fas fa-cogs"></i><h3>Simple System</h3><p>Easy-to-use system designed for takeaways.</p></div>
+    <div class="why-card"><i class="fas fa-chart-simple"></i><h3>Scalable</h3><p>Scales with your business as you grow.</p></div>
+  </div>
+</section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonial"><p>“Since using OrderGuard, our repeat customers doubled. We control everything under our own brand!”</p><span>— John D., Takeaway Owner</span></div>
-    <div class="testimonial"><p>“The dashboard is simple and powerful. I can see orders, payments, and customer details instantly.”</p><span>— Maria S., Restaurant Manager</span></div>
-  </section>
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonial"><p>“Since using OrderGuard, our repeat customers doubled. We control everything under our own brand!”</p><span>— John D., Takeaway Owner</span></div>
+  <div class="testimonial"><p>“The dashboard is simple and powerful. I can see orders, payments, and customer details instantly.”</p><span>— Maria S., Restaurant Manager</span></div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p class="section-desc">
-      Built by people who know hospitality, OrderGuard helps takeaways grow without relying on big apps.
-      <br><br>That’s why we created OrderGuard: a simple yet powerful ordering system designed specifically for takeaways and restaurants.
-      <br><br>Our mission is to empower local businesses to thrive.
-    </p>
-  </section>
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Us</h2>
+  <p class="section-desc">
+    Built by people who know hospitality, OrderGuard helps takeaways grow without relying on big apps.
+    <br><br>That’s why we created OrderGuard: a simple yet powerful ordering system designed specifically for takeaways and restaurants.
+    <br><br>Our mission is to empower local businesses to thrive.
+  </p>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Book a Free Demo</h2>
-    <form id="contactForm">
-      <input type="text" placeholder="Business Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <textarea placeholder="Your Message"></textarea>
-      <button type="submit">Submit</button>
-      <div class="success-message">✅ Your demo request has been sent!</div>
-    </form>
-  </section>
+<section id="contact">
+  <h2>Book a Free Demo</h2>
+  <form id="contactForm" class="show">
+    <label for="name">Name *</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 OrderGuard. All Rights Reserved.</p>
-      <p>Contact us: <a href="mailto:info@order-guard.com">info@order-guard.com</a></p>
-      <p><a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Cookies</a></p>
-    </div>
-  </footer>
+    <label for="business">Business Name *</label>
+    <input type="text" id="business" name="business" placeholder="Enter business name" required>
 
-  <!-- JS -->
-  <script>
-    const menuToggle=document.querySelector('.menu-toggle');
-    const navLinks=document.querySelector('.links');
-    menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('active');});
+    <label for="city">City *</label>
+    <input type="text" id="city" name="city" placeholder="City" required>
 
-    // Fade-up
-    const faders=document.querySelectorAll('.fade-up, .feature, .testimonial, form, .why-card');
-    window.addEventListener('scroll',()=>{faders.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('show');});});
-    window.addEventListener('load',()=>{faders.forEach(el=>el.classList.add('show'));});
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-    // Contact form success message
-    const form=document.getElementById('contactForm');
-    const successMsg=form.querySelector('.success-message');
-    form.addEventListener('submit',e=>{
-      e.preventDefault();
-      successMsg.style.display='block';
-      setTimeout(()=>{successMsg.style.display='none';form.reset();},3000);
-    });
-  </script>
+    <label for="phone">Phone (optional)</label>
+    <input type="text" id="phone" name="phone" placeholder="Phone">
+
+    <label for="contactMethod">Preferred Contact Method *</label>
+    <select id="contactMethod" name="contactMethod" required>
+      <option value="">Select one</option>
+      <option value="email">Email</option>
+      <option value="whatsapp">WhatsApp</option>
+      <option value="phone">Phone</option>
+    </select>
+
+    <label for="bestTime">Best Time to Contact</label>
+    <input type="text" id="bestTime" name="bestTime" placeholder="E.g., 2–4 PM">
+
+    <label for="notes">Notes / Message</label>
+    <textarea id="notes" name="notes" placeholder="Your message"></textarea>
+
+    <button type="submit">Submit</button>
+    <div class="success-message">✅ Your demo request has been sent!</div>
+  </form>
+
+  <h2 style="margin-top:50px;">Interactive Savings Calculator</h2>
+  <form id="savingsCalc" class="show">
+    <input type="number" id="currentCommission" placeholder="Current Commission (%)" required>
+    <input type="number" id="orderValue" placeholder="Average Order Value" required>
+    <button type="button" onclick="calculateSavings()">Calculate Savings</button>
+    <p id="result" style="
+      text-align:center;
+      margin-top:1rem;
+      padding:0.8rem 1rem;
+      background:rgba(0,0,0,0.5);
+      border-radius:8px;
+      font-weight:600;
+      color:#00b3ff;
+    "></p>
+  </form>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2025 OrderGuard. All Rights Reserved.</p>
+    <p>Contact us: <a href="mailto:info@order-guard.com">info@order-guard.com</a></p>
+    <p><a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Cookies</a></p>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+const menuToggle=document.querySelector('.menu-toggle');
+const navLinks=document.querySelector('.links');
+menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('active');});
+
+// Fade-up
+const faders=document.querySelectorAll('.fade-up, .feature, .testimonial, form, .why-card');
+window.addEventListener('scroll',()=>{faders.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('show');});});
+window.addEventListener('load',()=>{faders.forEach(el=>el.classList.add('show'));});
+
+// Contact form success message
+const form=document.getElementById('contactForm');
+const successMsg=form.querySelector('.success-message');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  successMsg.style.display='block';
+  setTimeout(()=>{successMsg.style.display='none';form.reset();},3000);
+});
+
+// Savings Calculator
+function calculateSavings() {
+  const current = parseFloat(document.getElementById('currentCommission').value);
+  const value = parseFloat(document.getElementById('orderValue').value);
+  const newRate = 7.5; // Example new commission
+
+  if(isNaN(current) || isNaN(value)){
+    document.getElementById('result').innerText="Please enter valid numbers.";
+    return;
+  }
+
+  const savings = ((current - newRate)/100) * value;
+  document.getElementById('result').innerText=`You could save: ₱${savings.toFixed(2)} per order.`;
+}
+</script>
 </body>
 </html>
+
