@@ -193,6 +193,8 @@
         <a href="#testimonials">Testimonials</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="INDEX FOR LOGIN AND REGISTER/login.html" style="color:#00b3ff;font-weight:600;">Log In</a>
+
       </div>
       <div class="menu-toggle"><i class="fas fa-bars"></i></div>
     </div>
@@ -308,6 +310,7 @@
     <button type="submit">Submit</button>
     <div class="success-message">✅ Your demo request has been sent!</div>
   </form>
+</section>
 
   <h2 style="margin-top:50px;">Interactive Savings Calculator</h2>
   <form id="savingsCalc" class="show">
@@ -348,28 +351,110 @@ window.addEventListener('scroll',()=>{faders.forEach(el=>{if(el.getBoundingClien
 window.addEventListener('load',()=>{faders.forEach(el=>el.classList.add('show'));});
 
 // Contact form success message
-const form=document.getElementById('contactForm');
-const successMsg=form.querySelector('.success-message');
-form.addEventListener('submit',e=>{
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  successMsg.style.display='block';
-  setTimeout(()=>{successMsg.style.display='none';form.reset();},3000);
+
+  // Check required fields
+  const requiredFields = ['name', 'business', 'city', 'email', 'contactMethod'];
+  for (let field of requiredFields) {
+    if (!form[field].value.trim()) {
+      alert(`${field} is required`);
+      return;
+    }
+  }
+
+  // Collect form data
+  const data = {
+    name: form.name.value,
+    business: form.business.value,
+    city: form.city.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    contactMethod: form.contactMethod.value,
+    bestTime: form.bestTime?.value || '',
+    notes: form.notes?.value || ''
+  };
+
+  // Send to backend
+  try {
+    const res = await fetch('http://localhost:5000/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.error("Server error:", errorData);
+      alert("Server error, check console");
+    } else {
+      const result = await res.json();
+      alert(result.message || "✅Contact request sent successfully!");
+      form.reset();
+    }
+  } catch (err) {
+    console.error("Fetch failed:", err);
+    alert("Failed to send request. Check server.");
+  }
 });
 
-// Savings Calculator
-function calculateSavings() {
+
+async function calculateSavings() {
   const current = parseFloat(document.getElementById('currentCommission').value);
   const value = parseFloat(document.getElementById('orderValue').value);
-  const newRate = 7.5; // Example new commission
+  const newRate = 7.5;
 
-  if(isNaN(current) || isNaN(value)){
-    document.getElementById('result').innerText="Please enter valid numbers.";
+  if (isNaN(current) || isNaN(value)) {
+    document.getElementById('result').innerText = "Please enter valid numbers.";
     return;
   }
 
-  const savings = ((current - newRate)/100) * value;
-  document.getElementById('result').innerText=`You could save: £${savings.toFixed(2)} per order.`;
+  const savings = ((newRate - current) / 100) * value;
+  document.getElementById('result').innerText =
+    `You could save: £${savings.toFixed(2)} per order.`;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/calc", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        currentCommission: current,
+        orderValue: value,
+        newRate: newRate,
+        result: savings
+      })
+    });
+
+    let data;
+    try {
+      data = await res.json();
+    } catch {
+      console.error("❌ Could not parse JSON response");
+      data = {};
+    }
+
+    if (!res.ok) {
+      console.error("❌ Server error:", data);
+      alert("❌ Failed to save calculation. Check console.");
+      return;
+    }
+
+    console.log("✅ Saved to DB:", data);
+    alert("✅ Calculation saved to DB!");
+
+    // Clear inputs
+    document.getElementById('currentCommission').value = '';
+    document.getElementById('orderValue').value = '';
+
+  } catch (err) {
+    console.error("❌ Fetch failed:", err);
+    alert("❌ Failed to save calculation. Check server.");
+  }
 }
+
+
 </script>
 </body>
 </html>
